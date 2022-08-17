@@ -1,0 +1,22 @@
+CREATE TABLE clothing (id INTEGER PRIMARY KEY, brand_name TEXT, quantity INTEGER, size text, color text, PRICE INTEGER);
+
+INSERT INTO clothing VALUES (1, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (2, "Vans", 10, 'S', "Black",9.99);
+INSERT INTO clothing VALUES (3, "GAP", 10, 'S', "Black",29.99);
+INSERT INTO clothing VALUES (4, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (5, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (6, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (7, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (8, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (9, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (10, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (11, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (12, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (13, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (14, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (15, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (16, "Tommy", 10, 'S', "Black",19.99);
+INSERT INTO clothing VALUES (17, "Tommy", 10, 'S', "Black",19.99);
+
+SELECT PRICE,BRAND_NAME FROM CLOTHING
+ORDER BY PRICE
