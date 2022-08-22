@@ -1,0 +1,61 @@
+-- ANSWERING ANALYTICAL QUESTIONS BASED ON DIFFERENT TABLES
+
+SELECT * 
+FROM BIT_DB.CUSTOMERS 
+LIMIT 20 ;
+
+--CODE FOR TABLE OF JANSALES
+
+SELECT * FROM JANSALES; 
+
+--CODE FOR TABLE OF FEBSALES
+
+SELECT * FROM FEBSALES; 
+
+/* #1. How many orders were placed in January?*/
+
+SELECT COUNT(ORDERID) as Orders_Placed
+FROM JANSALES;
+
+-- OR SELECT COUNT(*) FROM JANSALES;
+
+/*  #2. How many of those orders were for an iPhone? */
+
+SELECT COUNT(ORDERID) as iPhone_Orders
+FROM JANSALES
+WHERE PRODUCT = 'iPhone';
+
+
+/* #3. Select the customer account numbers for all the orders that were placed in February.*/
+
+SELECT C.ACCTNUM, F.ORDERID AS ORDERS_PLACED_IN_FEB
+FROM FEBSALES F
+JOIN CUSTOMERS C
+ON C.ORDER_ID = F.ORDERID;
+
+/* #4. Which product was the cheapest one sold in January, and what was the price? */
+
+SELECT DISTINCT J.PRODUCT, J.PRICE
+FROM JANSALES J
+WHERE price in (SELECT min(price) FROM JanSales);
+
+/* #5. What is the total revenue for each product sold in January? (Revenue can be calculated using the number of products sold and the price of the products).*/
+
+SELECT PRODUCT,(SUM(QUANTITY*PRICE)) AS REVENUE
+FROM JANSALES
+GROUP BY PRODUCT ;
+
+/* #6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?*/
+
+SELECT PRODUCT, COUNT(PRODUCT) as QUANTITY, (SUM(QUANTITY*PRICE)) AS REVENUE
+FROM FEBSALES
+WHERE LOCATION like '548 Lincoln%';
+
+/* #7. How many customers ordered more than 2 products at a time in February, and what was the average amount spent for those customers?*/
+
+SELECT COUNT(C.ACCTNUM) AS ACCTNUM ,(AVG(F.QUANTITY*F.PRICE)) AS AVG_AMOUNT_SPENT
+FROM CUSTOMERS C
+LEFT JOIN FEBSALES F
+ON C.ORDER_ID = F.ORDERID
+WHERE F.QUANTITY > 2;
+
