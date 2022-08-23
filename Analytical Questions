@@ -59,3 +59,10 @@ LEFT JOIN FEBSALES F
 ON C.ORDER_ID = F.ORDERID
 WHERE F.QUANTITY > 2;
 
+--- #8. List all the products sold in Los Angeles in February, and include how many of each were sold.
+
+SELECT PRODUCT, SUM(QUANTITY) AS SOLD
+FROM FEBSALES
+WHERE LOCATION LIKE '%Los Angeles%'
+GROUP BY PRODUCT
+ORDER BY SOLD;
