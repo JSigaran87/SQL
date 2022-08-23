@@ -66,3 +66,33 @@ FROM FEBSALES
 WHERE LOCATION LIKE '%Los Angeles%'
 GROUP BY PRODUCT
 ORDER BY SOLD;
+
+-- #9. How many of each type of headphone were sold in February?
+
+SELECT PRODUCT, SUM(QUANTITY) AS HEADPHONES_SOLD
+FROM FEBSALES
+WHERE PRODUCT LIKE '%HEADPHONES%'
+GROUP BY PRODUCT;
+
+-- #10. What was the average amount spent per account in February?
+
+SELECT SUM(F.QUANTITY*F.PRICE)/COUNT(C.ACCTNUM) AS AVG_SPENT
+FROM FEBSALES F
+LEFT JOIN CUSTOMERS C
+ON F.ORDERID = C.ORDER_ID;
+
+-- #11. What was the average quantity of products purchased per account in February? 
+
+SELECT AVG(F.QUANTITY) AS AVG_QUANTITY
+FROM FEBSALES F 
+LEFT JOIN CUSTOMERS C
+ON F.ORDERID = C.ORDER_ID;
+
+
+-- #12. Which product brought in the most revenue in January and how much revenue did it bring in total?
+
+SELECT PRODUCT, SUM(QUANTITY*PRICE) AS TOTAL
+FROM JANSALES
+GROUP BY PRODUCT 
+ORDER BY TOTAL desc 
+LIMIT 1;
